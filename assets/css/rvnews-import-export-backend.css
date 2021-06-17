@@ -1,0 +1,11 @@
+/*CSS goes here*/
+.imp-exp{
+	min-height: 250px;
+	border: 2px solid #ddd;
+	padding: 10px;
+	margin-bottom: 50px;
+}
+
+.btn-imp-exp {
+	width: 200px;
+}
