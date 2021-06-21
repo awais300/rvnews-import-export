@@ -91,6 +91,7 @@ class ImportExport {
 				$i = 0;
 				foreach ( $products as $key => $product ) {
 					$csv_data_rows[ $i ][] = $product->ID;
+					$csv_data_rows[ $i ][] = $product->post_title;
 					$csv_data_rows[ $i ][] = $product->part_number;
 					$csv_data_rows[ $i ][] = $product->brand_name;
 					$csv_data_rows[ $i ][] = $product->short_description;
@@ -167,6 +168,7 @@ class ImportExport {
 				}
 
 				foreach ( $reader as $key => $record ) {
+					$record = array_map( 'trim', $record );
 					$this->insert_record( $record );
 				}
 
@@ -189,6 +191,7 @@ class ImportExport {
 			'ID'           => $post_id,
 			'post_type'    => 'product',
 			'post_status'  => 'publish',
+			'post_title'   => $record['Product Title'],
 			'post_content' => $record['Long Description'],
 			'meta_input'   => array(
 				'part_number'             => $record['Supplier Part Number'],
@@ -342,6 +345,7 @@ class ImportExport {
 	public function get_csv_header() {
 		return array(
 			"RV New's Internal Product ID",
+			'Product Title',
 			'Supplier Part Number',
 
 			'Brand Name',
