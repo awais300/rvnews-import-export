@@ -257,8 +257,10 @@ class ImportExport {
 		foreach ( $record as $key => $value ) {
 			if ( strpos( $key, 'Product Category' ) !== false ) {
 				if ( ! empty( $value ) ) {
-					$category_data[] = $value;
-					$i++;
+					if ( term_exists( $value, 'product_category' ) ) {
+						$category_data[] = $value;
+						$i++;
+					}
 				}
 			}
 		}
